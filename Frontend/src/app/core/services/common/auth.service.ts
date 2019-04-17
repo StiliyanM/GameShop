@@ -6,8 +6,6 @@ import { ApiService } from './api.service';
 
 @Injectable()
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
   isLogged: any;
   isAdmin: any;
 
@@ -23,13 +21,19 @@ export class AuthService {
   }
 
   logout() {
-      // remove user from local storage to log user out
-      localStorage.removeItem('currentUser');
-      this.currentUserSubject.next(null);
+      localStorage.removeItem('currentUser')
   }
 
   isAuthenticated() {
     return localStorage.getItem('currentUser') !== null
+  }
+
+  get username() {
+    return localStorage.getItem('username')
+  }
+
+  get token() {
+    return localStorage.getItem('currentUser')
   }
 
 }

@@ -6,6 +6,7 @@ import { GameRoutingModule } from './game.routing-module';
 import { CreateComponent } from './create/create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './details/details.component';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { DetailsComponent } from './details/details.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [AllComponent, CreateComponent, DetailsComponent]
+  declarations: [AllComponent, CreateComponent, DetailsComponent, FormComponent]
 })
 export class GameModule { }

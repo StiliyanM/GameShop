@@ -26,7 +26,11 @@ export class SigninComponent implements OnInit {
   signIn() {
     this.authService
       .login(this.loginForm.value)
-      .subscribe(() => {
+      .subscribe((data) => {
+        localStorage.setItem('currentUser', data.token)
+        localStorage.setItem('isAdmin', data.user.isAdmin)
+        localStorage.setItem('username', data.user.name)
+
         this.router.navigate([ '/home' ]);
       });
   }

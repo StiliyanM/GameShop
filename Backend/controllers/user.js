@@ -1,4 +1,4 @@
-const VALIDATOR = require('validator');
+const validator = require('validator');
 const encryption = require('../util/encryption')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken');
@@ -8,7 +8,7 @@ function validateRegisterForm(payload) {
     let errors = {};
     let isFormValid = true;
 
-    if (!payload || typeof payload.email !== 'string' || !VALIDATOR.isEmail(payload.email)) {
+    if (!payload || typeof payload.email !== 'string' || !validator.isEmail(payload.email)) {
         isFormValid = false;
         errors.email = 'Please provide a correct email address.';
     }
@@ -38,7 +38,7 @@ function validateLoginForm(payload) {
         errors.password = 'Please provide your password.';
     }
 
-    if (!payload || typeof payload.email !== 'string' || !VALIDATOR.isEmail(payload.email)) {
+    if (!payload || typeof payload.email !== 'string' || !validator.isEmail(payload.email)) {
         isFormValid = false;
         errors.email = 'Please provide a correct email address.';
     }

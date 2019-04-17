@@ -161,7 +161,7 @@ module.exports = {
 
     all: (req, res) => {
 
-        game.find({}).then((result) => {
+        Game.find({}).then((result) => {
                 return res.status(200).json({
                     message: '',
                     data: result,

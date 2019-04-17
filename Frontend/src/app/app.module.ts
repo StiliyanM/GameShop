@@ -7,13 +7,13 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/common/navigation/navigation.component';
 import { SigninComponent } from './components/authentication/signin/signin.component';
 import { SignupComponent } from './components/authentication/signup/signup.component';
-import { HomeComponent } from './components/home/home.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { CollapseDirective } from './components/shared/directives/collapse.directive';
 import { DropdownDirective } from './components/shared/directives/dropdown.directive';
 import { CartComponent } from './components/cart/cart.component';
+import { FooterComponent } from './components/common/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +21,10 @@ import { CartComponent } from './components/cart/cart.component';
     NavigationComponent,
     SigninComponent,
     SignupComponent,
-    HomeComponent,
     CollapseDirective,
     DropdownDirective,
-    CartComponent
+    CartComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

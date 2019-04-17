@@ -4,7 +4,7 @@ export class Game {
     cover: string;
     publisher: string;
     genre: string;
-    releaseYear: number;
+    year: number;
     price: number;
     description: string;
 }
