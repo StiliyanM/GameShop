@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="mt-2 col-3" *ngFor="let game of games">
+    <div class="book-card h-100" >
+      <img src="{{game.cover}}" class="w-100 h-100" alt="game-cover">
+      <h5 class="mt-1">{{game.title}}</h5>
+      <h6>{{game.publisher}}</h6>
+      <p>{{game.price}} &#36;</p>
+      <a class="btn btn-primary" routerLink="/games/details/{{game.id}}">View Details</a>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,37 @@
+<div class="container">
+  <form>
+    <h1 class="text-center">Shopping Cart</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items; index as i">
+          <th>{{i + 1}}</th>
+          <th scope="row">{{item.title}}</th>
+          <td>{{item.price  | currency}}</td>
+          <td>
+            <div ngbDropdown>
+              <button class="btn btn-outline-primary" name="{{item.id}}" id="{{item.id}}" ngbDropdownToggle>{{item.quantity}}</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button *ngFor="let option of options" (click)="changeSelected(item.id, option)" ngbDropdownItem>{{option}}</button>
+              </div>
+            </div>
+          </td>
+          <td><a (click)="remove(item.id)">X</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex align-items-center justify-content-end">
+      <div style="font-size:1.5rem">Total price: {{total  | currency}}</div>
+      <input class="ml-3 btn btn-success mr-3" type="submit" value="Checkout"
+        (click)="checkout()" />
+    </div>
+  </form>
+</div>
