@@ -17,6 +17,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule
   ],
   providers: [
+    HttpClient,
+    ApiService,
+    ToastrService,
+    GameService,
+    AuthService,
+    CartService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,
@@ -37,12 +43,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       useClass: SuccessInterceptor,
       multi: true
     },
-    HttpClient,
-    ApiService,
-    ToastrService,
-    GameService,
-    AuthService,
-    CartService
   ]
 
 })

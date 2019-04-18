@@ -18,13 +18,13 @@
           <td>{{item.price  | currency}}</td>
           <td>
             <div ngbDropdown>
-              <button class="btn btn-outline-primary" name="{{item.id}}" id="{{item.id}}" ngbDropdownToggle>{{item.quantity}}</button>
+              <button class="btn btn-outline-primary" [name]="item.gameId" [id]="item.gameId" ngbDropdownToggle>{{item.quantity}}</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button *ngFor="let option of options" (click)="changeSelected(item.id, option)" ngbDropdownItem>{{option}}</button>
+                <button *ngFor="let option of options" (click)="changeSelected(item.gameId, option)" ngbDropdownItem>{{option}}</button>
               </div>
             </div>
           </td>
-          <td><a (click)="remove(item.id)">X</a></td>
+          <td><a (click)="remove(item.gameId)">X</a></td>
         </tr>
       </tbody>
     </table>

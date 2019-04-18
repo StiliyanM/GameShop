@@ -64,7 +64,7 @@
       <textarea class="form-control" rows="5" id="description" placeholder="Enter description"
         formControlName="description"></textarea>
       <div class="alert alert-danger" *ngIf="fields.description.touched && fields.description?.errors?.minlength">
-        <span>Description must be longer than {{fields.description.errors.minlength.minlength}}</span>
+        <span>Description must be longer than {{fields.description.errors.minlength.requiredLength}}</span>
       </div>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>

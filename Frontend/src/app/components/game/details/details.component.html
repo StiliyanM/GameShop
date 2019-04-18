@@ -10,7 +10,7 @@
     <p>Description: {{game.description}}</p>
     <h2>Price: {{game.price | currency}}</h2>
     <ng-template [ngIf]="isLogged">
-      <button class="btn btn-success" (click)="buygame()" [disabled]="isBought">Buy game</button>
+      <button class="btn btn-success" (click)="buy()" [disabled]="isBought">Buy game</button>
     </ng-template>
     <ng-template [ngIf]="isAdmin">
       <div id="admin-panel">

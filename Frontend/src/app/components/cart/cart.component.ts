@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Cart } from 'src/app/core/models/cart';
+import {  Order } from 'src/app/core/models/order';
 import { CartService } from 'src/app/core/services';
 
 @Component({
@@ -9,7 +9,7 @@ import { CartService } from 'src/app/core/services';
 })
 export class CartComponent implements OnInit {
 
-  items: Cart[]
+  items: Order[]
   total: number
   options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   constructor(private cartService: CartService) { }
@@ -18,11 +18,12 @@ export class CartComponent implements OnInit {
     this.cartService.all().subscribe(data => {
       this.items = Object.assign([], data)
     })
+
     this.calcTotalPrice()
   }
 
   changeSelected(id: number, option: number) {
-    this.items.find(i => i.id === id).quantity = option
+    this.items.find(i => i.gameId === id).quantity = option
 
     this.calcTotalPrice()
   }
@@ -32,5 +33,15 @@ export class CartComponent implements OnInit {
       return acc + curr.price * curr.quantity
   }, 0)
 
+  }
+
+  remove(id: number) {
+    this.items = this.items.filter(i => i.gameId === id)
+
+    this.cartService.remove(id)
+  }
+
+  checkout() {
+    this.cartService.checkout(this.items)
   }
 }

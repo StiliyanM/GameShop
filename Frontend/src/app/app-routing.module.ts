@@ -16,7 +16,11 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/games/all' },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'cart', component: CartComponent }
+  { path: 'cart', component: CartComponent },
+  {
+    path: '**',
+    redirectTo: '/games/all'
+  }
 
 ];
 
