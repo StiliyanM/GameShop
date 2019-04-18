@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateComponent } from './create/create.component';
 import { DetailsComponent } from './details/details.component';
+import { EditComponent } from './edit/edit.component';
 
 const gameRoutes: Routes = [
     {
@@ -17,6 +18,10 @@ const gameRoutes: Routes = [
     {
       path: 'details/:gameId',
       component: DetailsComponent
+    },
+    {
+      path: 'edit/:gameId',
+      component: EditComponent
     },
     {
       path: 'create',

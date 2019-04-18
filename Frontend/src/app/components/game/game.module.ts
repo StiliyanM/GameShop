@@ -7,6 +7,9 @@ import { CreateComponent } from './create/create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './details/details.component';
 import { FormComponent } from './form/form.component';
+import { EditComponent } from './edit/edit.component';
+import { CoreModule } from 'src/app/core/core.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -14,8 +17,11 @@ import { FormComponent } from './form/form.component';
     RouterModule,
     GameRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
+    CoreModule,
   ],
-  declarations: [AllComponent, CreateComponent, DetailsComponent, FormComponent]
+  declarations: [AllComponent, CreateComponent, DetailsComponent, FormComponent, EditComponent],
+
 })
 export class GameModule { }

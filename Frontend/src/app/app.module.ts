@@ -10,10 +10,10 @@ import { SignupComponent } from './components/authentication/signup/signup.compo
 
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
-import { CollapseDirective } from './components/shared/directives/collapse.directive';
-import { DropdownDirective } from './components/shared/directives/dropdown.directive';
 import { CartComponent } from './components/cart/cart.component';
 import { FooterComponent } from './components/common/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './components/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,16 +21,16 @@ import { FooterComponent } from './components/common/footer/footer.component';
     NavigationComponent,
     SigninComponent,
     SignupComponent,
-    CollapseDirective,
-    DropdownDirective,
     CartComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    SharedModule,
     CoreModule,
     NgbModule.forRoot()
   ],

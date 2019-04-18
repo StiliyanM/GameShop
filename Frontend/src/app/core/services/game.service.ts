@@ -34,13 +34,22 @@ export class GameService {
     ) {  }
 
  all() {
-     return this.http.get('games/all')
+    //  return this.http.get('games/all')
+    return of(this.games)
  }
  create(game: Game): Observable<any> {
   return this.http.post('games/add', {game: game})
 }
 
-byId(id: number){
+edit(game: Game): Observable<any> {
+  return this.http.put('games/edit', {game: game})
+}
+
+delete(id: number) {
+  return this.http.delete('games/delete', {id: id} )
+}
+
+byId(id: number) {
   return of(this.games[0])
 }
 

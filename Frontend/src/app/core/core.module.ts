@@ -9,12 +9,14 @@ import { SuccessInterceptor } from './interceptors/success.interceptor';
 import { ToastrService, ApiService, AuthService, CartService } from './services';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrderService } from './services/order.service';
+import { ConfirmationDialogService } from './services/common/confirmation-dialog.service';
+import { ConfirmationDialogComponent } from '../components/shared/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
   ],
   providers: [
     HttpClient,
@@ -23,6 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     GameService,
     AuthService,
     CartService,
+    OrderService,
+    ConfirmationDialogService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,
@@ -43,7 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       useClass: SuccessInterceptor,
       multi: true
     },
-  ]
+  ],
 
 })
 export class CoreModule { }

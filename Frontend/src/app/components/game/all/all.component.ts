@@ -14,7 +14,7 @@ export class AllComponent implements OnInit {
 
   ngOnInit() {
     this.gameService.all().subscribe((resp) => {
-      this.games = resp.data
+      this.games = resp
     })
   }
 }
