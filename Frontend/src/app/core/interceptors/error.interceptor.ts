@@ -18,6 +18,7 @@ import { ToastrService } from '../services/common';
       request: HttpRequest<any>,
       next: HttpHandler
     ): Observable<HttpEvent<any>> {
+
       return next.handle(request).pipe(
         catchError((err: HttpErrorResponse) => {
           console.log(err);

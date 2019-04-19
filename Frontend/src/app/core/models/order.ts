@@ -1,5 +1,5 @@
 export class Order {
-    gameId: number;
+    gameId: string;
     title: string;
     price: number;
     quantity: number;

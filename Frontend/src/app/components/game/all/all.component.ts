@@ -13,8 +13,9 @@ export class AllComponent implements OnInit {
   constructor(private gameService: GameService) { }
 
   ngOnInit() {
+
     this.gameService.all().subscribe((resp) => {
-      this.games = resp
+      this.games = resp.data
     })
   }
 }

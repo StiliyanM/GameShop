@@ -21,7 +21,6 @@ module.exports = {
       return res.status(401)
         .json({ message: 'Token is invalid.', error });
     }
-
     if (!decodedToken) {
       return res.status(401)
         .json({ message: 'Not authenticated.' });
@@ -31,7 +30,9 @@ module.exports = {
     next();
   },
   isInRole: (role) => (req, res, next) => {
-      User.findById(req.userId)
+      // decoded = jwt.verify(JSON.parse(req.headers.authorization.split(' ')[1]), configuration.decodedToken);
+    // temporary
+      User.findById('5cb8bc0de15b21352c74ba70')
         .then(user => {
           if (user.roles.indexOf(role) > -1) {
             next();

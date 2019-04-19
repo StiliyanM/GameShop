@@ -2,6 +2,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const userRoutes = require('../routes/user')
 const gameRoutes = require('../routes/game')
+const orderRoutes = require('../routes/order')
 
 module.exports = app => {
   app.use(bodyParser.urlencoded({
@@ -14,4 +15,6 @@ module.exports = app => {
 
   app.use('/user', userRoutes)
   app.use('/games', gameRoutes)
+  app.use('/order', orderRoutes)
+
 }

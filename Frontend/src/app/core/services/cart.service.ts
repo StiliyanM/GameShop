@@ -4,42 +4,24 @@ import { OrderService } from './order.service';
 import { ToastrService } from './common';
 
 @Injectable()
-export class CartService implements OnInit {
-  // testing purposes
-  items: Order[] = [
-    {
-      gameId: 1,
-      title: 'Read Dead Redemtion 2',
-      price: 10,
-      quantity: 1
-    },
-    {
-      gameId: 2,
-      title: 'Read Dead Redemtion 2',
-      price: 10,
-      quantity: 1
-    },
-  ]
+export class CartService {
 
   constructor(private orderService: OrderService, private toastrService: ToastrService) { }
-
-  ngOnInit(): void {
-    if (!localStorage.getItem('cart')) {
-      localStorage.setItem('cart', JSON.stringify([]))
-    }
-  }
 
 
   all() {
     return JSON.parse(localStorage.getItem('cart'))
   }
   add(order: Order) {
-    const items = this.all()
+    let items = this.all()
+    if (!items) {
+      items = []
+    }
     items.push(order)
     this.save(items);
   }
 
-  remove(id: number) {
+  remove(id: string) {
     let items = JSON.parse(localStorage.getItem('cart'))
     items = items.filter(o => o.gameId !== id)
 
@@ -49,10 +31,10 @@ export class CartService implements OnInit {
   checkout(orders: Order[]) {
 
     this.orderService.add(orders)
-    .subscribe((result) => {
-      this.toastrService.success(result.message)
-      localStorage.removeItem('cart')
-    })
+      .subscribe((result) => {
+        this.toastrService.success(result.message)
+        localStorage.removeItem('cart')
+      })
   }
 
   private save(orders: Order[]) {

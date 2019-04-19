@@ -15,14 +15,12 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-    this.cartService.all().subscribe(data => {
-      this.items = Object.assign([], data)
-    })
-
+    this.items = this.cartService.all()
+    debugger
     this.calcTotalPrice()
   }
 
-  changeSelected(id: number, option: number) {
+  changeSelected(id: string, option: number) {
     this.items.find(i => i.gameId === id).quantity = option
 
     this.calcTotalPrice()
@@ -35,7 +33,7 @@ export class CartComponent implements OnInit {
 
   }
 
-  remove(id: number) {
+  remove(id: string) {
     this.items = this.items.filter(i => i.gameId === id)
 
     this.cartService.remove(id)

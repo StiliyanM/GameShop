@@ -5,7 +5,8 @@ module.exports = {
 
 
     checkout: (req, res) => {
-        let userId = req.user.id;
+        //temporary
+        let userId = '5cb8bc0de15b21352c74ba70';
         let order = req.body;
         
                 Order.create({
@@ -14,7 +15,7 @@ module.exports = {
                 }).then((order) => {
                     user.update({ _id: userId }, { $push: { orders: order._id } }).then(() => {
                         return res.status(200).json({
-                            message: 'Thank you for your order! Books will be sent to you as soon as possible!',
+                            message: 'Thank you for your order!',
                             data: order
                         });
                     });

@@ -56,6 +56,7 @@ async function seedUsers() {
     password: passwordHashAdmin,
     username: 'Admin',
     email: "admin@admin.com",
+    isAdmin: "true",
     roles: ["Admin"],
     orders: [],
   }

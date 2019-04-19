@@ -38,7 +38,7 @@ export class IsAnonymousGuard implements CanLoad, CanActivate {
   }
 
   private isAnonymous(): boolean {
-    if (!this.auth.isLogged) {
+    if (!this.auth.token) {
       return true;
     }
 

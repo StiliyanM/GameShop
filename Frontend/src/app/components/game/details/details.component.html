@@ -9,17 +9,15 @@
     <p>Release Year: {{game.year}}</p>
     <p>Description: {{game.description}}</p>
     <h2>Price: {{game.price | currency}}</h2>
-    <ng-template [ngIf]="isLogged">
-      <button class="btn btn-success" (click)="buy()" [disabled]="isBought">Buy game</button>
-    </ng-template>
-    <!-- <ng-template [ngIf]="isAdmin"> -->
-      <div id="admin-panel">
-        <a class="btn btn-warning" routerLink="/games/edit/{{game.id}}">Edit game</a>
-        <a class="btn btn-danger" (click)="confirm()">Delete game</a>
+    <div *ngIf="isLogged">
+      <button class="btn btn-success float-right" (click)="buy(game._id)" [disabled]="isBought">Buy game</button>
+    </div>
+    <div *ngIf="isAdmin">
+        <a class="btn btn-warning" [routerLink]="['/games/edit', game._id]">Edit game</a>
+        <a class="btn btn-danger ml-2" (click)="confirm()">Delete game</a>
       </div>
-    <!-- </ng-template> -->
-    <ng-template [ngIf]="!isLogged">
+    </div>
+    <div *ngIf="!isLogged">
       <button class="btn btn-primary float-right" (click)="login()">Login to Buy!</button>
-    </ng-template>
+    </div>
   </div>
-</div>

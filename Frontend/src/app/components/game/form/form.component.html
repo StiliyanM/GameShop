@@ -1,64 +1,64 @@
 <h1 class="text-center">Game</h1>
 
-<section *ngIf="game">
+<section *ngIf="ready">
   <form [formGroup]="form" (submit)="submit()" class="w-100 d-flex flex-column">
-      <div class="row">
-          <div class="form-group offset-3 col-3">
-              <label for="title">Title</label>
-              <input type="text" class="form-control" id="title" placeholder="Enter title" formControlName="title">
-              <div class="alert alert-danger" *ngIf="fields?.title.touched && fields?.title?.errors?.required">
-                <span>Title field is required!</span>
-              </div>
-            </div>
-            <div class="form-group col-3">
-              <label for="publisher">Publisher</label>
-              <input type="text" class="form-control" id="publisher" placeholder="Enter publisher"
-                formControlName="publisher">
-              <div class="alert alert-danger" *ngIf="fields?.publisher.touched && fields?.publisher?.errors?.required">
-                <span>Publisher is required!</span>
-              </div>
-            </div>        
+    <div class="row">
+      <div class="form-group offset-3 col-3">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="Enter title" formControlName="title">
+        <div class="alert alert-danger" *ngIf="fields?.title.touched && fields?.title?.errors?.required">
+          <span>Title field is required!</span>
+        </div>
       </div>
-      <div class="row">
-          <div class="form-group offset-3 col-3">
-              <label for="genre">Genre</label>
-              <input type="text" class="form-control" id="genre" placeholder="Enter Genre" formControlName="genre">
-              <div class="alert alert-danger" *ngIf="fields?.genre.touched && fields?.genre?.errors?.required">
-                <span>Genre is required!</span>
-              </div>
-            </div>
-            <div class="form-group col-3">
-              <label for="year">Year</label>
-              <input type="number" class="form-control" id="year" placeholder="Year" formControlName="year">
-              <div class="alert alert-danger" *ngIf="fields.year.touched && fields.year?.errors?.required">
-                <span>Year is required!</span>
-              </div>
-              <div class="alert alert-danger" *ngIf="fields.year?.errors?.min">
-                <span>Year must be greater than or equal to {{ fields.year.errors.min.min }}</span>
-              </div>
-            </div>
+      <div class="form-group col-3">
+        <label for="publisher">Publisher</label>
+        <input type="text" class="form-control" id="publisher" placeholder="Enter publisher"
+          formControlName="publisher">
+        <div class="alert alert-danger" *ngIf="fields?.publisher.touched && fields?.publisher?.errors?.required">
+          <span>Publisher is required!</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group offset-3 col-3">
+        <label for="genre">Genre</label>
+        <input type="text" class="form-control" id="genre" placeholder="Enter Genre" formControlName="genre">
+        <div class="alert alert-danger" *ngIf="fields?.genre.touched && fields?.genre?.errors?.required">
+          <span>Genre is required!</span>
+        </div>
+      </div>
+      <div class="form-group col-3">
+        <label for="year">Year</label>
+        <input type="number" class="form-control" id="year" placeholder="Year" formControlName="year">
+        <div class="alert alert-danger" *ngIf="fields.year.touched && fields.year?.errors?.required">
+          <span>Year is required!</span>
+        </div>
+        <div class="alert alert-danger" *ngIf="fields.year?.errors?.min">
+          <span>Year must be greater than or equal to {{ fields.year.errors.min.min }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-3 offset-3">
+        <label for="cover">Cover</label>
+        <input type="text" class="form-control" id="cover" placeholder="Enter cover" formControlName="cover">
+        <div class="alert alert-danger" *ngIf="fields.cover.touched && fields.cover?.errors?.required">
+          <span>Cover is required!</span>
+        </div>
       </div>
 
-      <div class="row">
-          <div class="form-group col-3 offset-3">
-              <label for="cover">Cover</label>
-              <input type="text" class="form-control" id="cover" placeholder="Enter cover" formControlName="cover">
-            <div class="alert alert-danger" *ngIf="fields.cover.touched && fields.cover?.errors?.required">
-              <span>Cover is required!</span>
-            </div>
-          </div>
-
-            <div class="form-group col-3">
-              <label for="price">Price</label>
-              <input type="number" class="form-control" id="price" placeholder="Enter Price" formControlName="price">
-              <div class="alert alert-danger" *ngIf="fields.price.touched && fields.price?.errors?.required">
-                <span>Price is required!</span>
-              </div>
-              <div class="alert alert-danger" *ngIf="fields.price?.errors?.min">
-                Price must be positive number
-              </div>
-            </div>
+      <div class="form-group col-3">
+        <label for="price">Price</label>
+        <input type="number" class="form-control" id="price" placeholder="Enter Price" formControlName="price">
+        <div class="alert alert-danger" *ngIf="fields.price.touched && fields.price?.errors?.required">
+          <span>Price is required!</span>
+        </div>
+        <div class="alert alert-danger" *ngIf="fields.price?.errors?.min">
+          Price must be positive number
+        </div>
       </div>
+    </div>
     <div class="form-group offset-3 col-6">
       <label for="description">Description</label>
       <textarea class="form-control" rows="5" id="description" placeholder="Enter description"

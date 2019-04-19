@@ -27,9 +27,9 @@ import { SharedModule } from './components/shared/shared.module';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     SharedModule,
     CoreModule,
     NgbModule.forRoot()

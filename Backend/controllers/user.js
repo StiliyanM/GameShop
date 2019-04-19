@@ -1,6 +1,7 @@
 const validator = require('validator');
 const encryption = require('../util/encryption')
 const User = require('../models/User')
+const Order = require('../models/Order')
 const jwt = require('jsonwebtoken');
 const configuration = require("../config/config")["development"];
 
@@ -70,7 +71,7 @@ module.exports = {
       
               const user = await User.create(newUser);
       
-              res.status(201).json({ message: 'You are successfully reggistrated!', userId: user.id });
+              res.status(201).json({ message: 'You are successfully registered!', userId: user.id });
             } catch (error) {
               if (!error.statusCode) {
                 error.statusCode = 500;
@@ -100,8 +101,8 @@ module.exports = {
     
             const user = await User.findOne().where("email").equals(email);
     
-            const token = jwt.sign({ userId: user._id.toString() }, configuration.decodedToken, { expiresIn: '16h' });
-    
+            const token = jwt.sign({ userId: user._id.toString() }, configuration.decodedToken, { expiresIn: '9h' });
+
             res.status(200).json({ message: 'You are successfully logged in!', token, user });
           } catch (error) {
             if (!error.statusCode) {
@@ -112,16 +113,16 @@ module.exports = {
           }
         },
 
-    // getPurchaseHistory: (req, res) => {
-    //     let userId = req.user.id;
-    //     RECEIPT
-    //         .find({ user: userId })
-    //         .sort({ creationDate: -1 })
-    //         .then((receipts) => {
-    //             res.status(200).json({
-    //                 message: '',
-    //                 data: receipts
-    //             });
-    //         });
-    // },
+    purchaseHistory: (req, res) => {
+        let userId = req.user.id;
+        Order
+            .find({ user: userId })
+            .sort({ creationDate: -1 })
+            .then((orders) => {
+                res.status(200).json({
+                    message: '',
+                    data: orders
+                });
+            });
+    },
 };

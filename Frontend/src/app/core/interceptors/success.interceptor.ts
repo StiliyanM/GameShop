@@ -1,5 +1,5 @@
 // Decorators
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 
 // RXJS
 import { Observable } from 'rxjs';
@@ -20,9 +20,11 @@ import { ToastrService } from '../services/common';
 @Injectable()
 export class SuccessInterceptor implements HttpInterceptor {
 
-  constructor(
-    private toastr: ToastrService,
-  ) { }
+    private toastr: ToastrService
+
+  constructor(inj: Injector) {
+    this.toastr = inj.get(ToastrService)
+   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
@@ -34,13 +36,6 @@ export class SuccessInterceptor implements HttpInterceptor {
                 this.toastr.success(event.body.message);
               }
             }
-
-            // if (event instanceof HttpResponse && request.url.endsWith('login') ||
-            //   event instanceof HttpResponse && request.url.endsWith('register')) {
-            //   this.helperService.saveSession(event.body.data);
-            //   this.helperService.isUserLogged.next(true);
-            //   this.helperService.cartStatus.next('updateStatus');
-            // }
           }
         )
       );

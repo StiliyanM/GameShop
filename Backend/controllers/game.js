@@ -49,7 +49,7 @@ function validateForm(payload) {
 module.exports = {
     getSingle: (req, res) => {
         let gameId = req.params.gameId;
-
+        
         Game.findById(gameId)
             .then((game) => {
                 if (!game) {
@@ -78,14 +78,14 @@ module.exports = {
 
         if (!validationResult.success) {
             return res.status(400).json({
-                message: 'game form validation failed!',
+                message: 'Game form validation failed!',
                 errors: validationResult.errors
             });
         }
 
         Game.create(game).then((newgame) => {
             return res.status(200).json({
-                message: 'game created successfully!',
+                message: 'Game created successfully!',
                 data: newgame
             });
         }).catch((err) => {
@@ -104,7 +104,7 @@ module.exports = {
 
         if (!validationResult.success) {
             return res.status(400).json({
-                message: 'game form validation failed!',
+                message: 'Game form validation failed!',
                 errors: validationResult.errors
             });
         }
@@ -123,10 +123,10 @@ module.exports = {
             game.description = editedGame.description;
             game.cover = editedGame.cover;
             game.price = editedGame.price;
-            Game.save();
+            game.save();
 
             return res.status(200).json({
-                message: 'game edited successfully!',
+                message: 'Game edited successfully!',
                 data: game
             });
         }).catch((err) => {
@@ -148,7 +148,7 @@ module.exports = {
             }
 
             return res.status(200).json({
-                message: 'game deleted successfully.',
+                message: 'Game deleted successfully.',
                 data: deletedGame
             });
         }).catch((err) => {

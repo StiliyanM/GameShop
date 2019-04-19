@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditComponent implements OnInit {
 
-  game: Game
+  gameId: string
 
   constructor(
     private gameService: GameService,
@@ -17,12 +17,16 @@ export class EditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('gameId');
-    this.gameService.byId(id).subscribe(data => {
-      this.game = data
-      this.gameService.edit(this.game)
-      this.router.navigate(['/game/all']);
-    })
+    this.gameId = this.route.snapshot.paramMap.get('gameId');
+  }
+
+  save(game: Game) {
+      game.id = this.gameId
+      this.gameService.edit(game)
+      .subscribe(() => {
+        this.router.navigate([ '/car/details', game.id ]);
+      })
+
   }
 
 }

@@ -13,11 +13,19 @@ export class ApiService {
 
   api_url = 'http://localhost:5000/'
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient) { }
 
   private executeHttpMethod(httpMethod: string, url: string, data?: { [key: string]: any }): Observable<any> {
 
     const httpMethodName: string = httpMethod.toLowerCase()
+
+
+    // if (localStorage.getItem('currentUser')) {
+    //   const token = localStorage.getItem('currentUser')
+    //   this.headers = this.headers.append(
+    //     'Authorization', `Basic ${token}`
+    //   )
+    // }
 
     const req$: Observable<Response> = data ?
       this.http[httpMethodName](`${this.api_url}${url}`, data, { headers: this.headers }) :
