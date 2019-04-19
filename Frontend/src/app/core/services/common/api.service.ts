@@ -20,13 +20,6 @@ export class ApiService {
     const httpMethodName: string = httpMethod.toLowerCase()
 
 
-    // if (localStorage.getItem('currentUser')) {
-    //   const token = localStorage.getItem('currentUser')
-    //   this.headers = this.headers.append(
-    //     'Authorization', `Basic ${token}`
-    //   )
-    // }
-
     const req$: Observable<Response> = data ?
       this.http[httpMethodName](`${this.api_url}${url}`, data, { headers: this.headers }) :
       this.http[httpMethodName](`${this.api_url}${url}`, { headers: this.headers })

@@ -29,8 +29,9 @@ export class TokenInterceptor implements HttpInterceptor {
                     'Authorization': `Basic ${token}`
                 }
             });
+        }
 
         return next.handle(request);
+        
     }
-}
 }

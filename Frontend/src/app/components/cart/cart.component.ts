@@ -15,8 +15,7 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-    this.items = this.cartService.all()
-    debugger
+    this.items = this.cartService.all();
     this.calcTotalPrice()
   }
 
@@ -34,12 +33,14 @@ export class CartComponent implements OnInit {
   }
 
   remove(id: string) {
-    this.items = this.items.filter(i => i.gameId === id)
+    this.items = this.items.filter(i => i.gameId !== id)
 
     this.cartService.remove(id)
   }
 
   checkout() {
-    this.cartService.checkout(this.items)
+    this.cartService.checkout(this.items);
+
+    this.items = [];
   }
 }
