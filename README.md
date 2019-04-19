@@ -1,4 +1,4 @@
-Game Store
+# Game Store
 
 ## Idea
 An application for buying games
