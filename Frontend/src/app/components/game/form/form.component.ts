@@ -2,13 +2,15 @@ import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Game } from 'src/app/core/models/game';
 import { GameService } from 'src/app/core/services';
+import { BaseComponent } from '../../shared/base.component';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent extends BaseComponent implements OnInit {
   public form: FormGroup;
   public fields;
 
@@ -17,12 +19,16 @@ export class FormComponent implements OnInit {
   game: Game
   @Output() onSubmitForm = new EventEmitter<Object>();
   ready = false
-  constructor(private formBuilder: FormBuilder, private gameService: GameService) { }
+  constructor(private formBuilder: FormBuilder, private gameService: GameService) { 
+    super()
+  }
 
   ngOnInit() {
 
     if (this.gameId) {
-      this.gameService.byId(this.gameId).subscribe(resp => {
+      this.gameService.byId(this.gameId)
+      .pipe(takeWhile(_ => this.isAlive))
+      .subscribe(resp => {
         this.game = resp.data
         this.createForm()
         this.ready = true

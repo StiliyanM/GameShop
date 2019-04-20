@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const orderSchema = mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
+    products: [],
     creationDate: { type: mongoose.Schema.Types.Date, default: Date.now }
 });
 

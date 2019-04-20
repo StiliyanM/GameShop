@@ -14,5 +14,7 @@ export class OrderService {
      return this.http.post('order/checkout', orders);
   }
 
-
+  getUserOrder() {
+    return this.http.get('user/history')
+  }
 }

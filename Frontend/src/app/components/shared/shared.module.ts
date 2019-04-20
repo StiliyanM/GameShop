@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { CollapseDirective } from './directives/collapse.directive';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { BaseComponent } from './base.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
   declarations: [
     CollapseDirective,
     DropdownDirective,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    BaseComponent
   ],
   entryComponents: [ConfirmationDialogComponent]
 })

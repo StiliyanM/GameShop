@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { UserInput } from '../../models/users';
 import { ApiService } from './api.service';
 import { Subject } from 'rxjs/internal/Subject';
-import { of } from 'rxjs/internal/observable/of';
 
 
 @Injectable()

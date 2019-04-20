@@ -13,8 +13,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of items; index as i">
-          <th>{{i + 1}}</th>
-          <th scope="row">{{item.title}}</th>
+          <td>{{i + 1}}</td>
+          <td scope="row">{{item.title}}</td>
           <td>{{item.price  | currency}}</td>
           <td>
             <div ngbDropdown>
@@ -29,7 +29,7 @@
       </tbody>
     </table>
     <div class="d-flex align-items-center justify-content-between">
-      <div>
+      <div class="align-self-end">
         <a routerLink="['/games/all']" class="btn btn-primary">Continue Shopping!</a>
       </div>
       <div>

@@ -1,8 +1,6 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Order } from '../models/order';
 import { OrderService } from './order.service';
-import { of } from 'rxjs/internal/observable/of';
-import { Subject } from 'rxjs/internal/Subject';
 
 @Injectable()
 export class CartService {

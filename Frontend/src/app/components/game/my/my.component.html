@@ -1,3 +1,29 @@
-<p>
-  my works!
-</p>
+<div class="container">
+  <form>
+    <h1 class="text-center">My Orders</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Date</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of orders; index as i">
+          <th>{{i + 1}}</th>
+          <th scope="row">{{item.title}}</th>
+          <td>{{item.date | date}} </td>
+          <td>{{item.quantity}} </td>
+          <td>{{(item.quantity * item.price) | currency}} </td>
+        </tr>
+      </tbody>
+    </table>
+      <div>
+        <a routerLink="['/games/all']" class="btn btn-primary mt-3">Continue Shopping!</a>
+      </div>
+  </form>
+</div>
+

@@ -5,13 +5,15 @@ import { CartService, AuthService } from 'src/app/core/services';
 import { Order } from 'src/app/core/models/order';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmationDialogService } from 'src/app/core/services/common/confirmation-dialog.service';
+import { takeWhile } from 'rxjs/internal/operators/takeWhile';
+import { BaseComponent } from '../../shared/base.component';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent extends BaseComponent implements OnInit {
 
   game: Game
   isLogged = false
@@ -25,6 +27,7 @@ export class DetailsComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private confirmDialog: ConfirmationDialogService) {
+      super()
     }
 
   ngOnInit() {
@@ -32,8 +35,9 @@ export class DetailsComponent implements OnInit {
     this.isLogged = this.auth.isAuthenticated()
 
     const id = this.route.snapshot.paramMap.get('gameId');
-    this.gameService.byId(id).subscribe(resp => {
-
+    this.gameService.byId(id)
+    .pipe(takeWhile(_ => this.isAlive))
+    .subscribe(resp => {
       this.game = resp.data
     })
   }
@@ -55,6 +59,7 @@ export class DetailsComponent implements OnInit {
       .then((confirmed) => {
         if (confirmed) {
           this.gameService.delete(this.game['_id'])
+          .pipe(takeWhile(_ => this.isAlive))
           .subscribe(() => {
             this.router.navigate(['/games/all'])
           })

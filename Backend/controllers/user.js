@@ -105,7 +105,7 @@ module.exports = {
             const user = await User.findOne().where("email").equals(email);
     
             if(!user) {
-                return res.status(500).send({ success: false, message: 'User doesn\'t exist! Register First!' });
+                return res.status(500).send({ success: false, message: 'Invalid credentials!' });
             }
             const token = jwt.sign({ userId: user._id.toString() }, configuration.decodedToken, { expiresIn: '9h' });
 
@@ -120,15 +120,29 @@ module.exports = {
         },
 
     purchaseHistory: (req, res) => {
-        let userId = req.user.id;
+        let userId = req.userId;
+        const data = []
+
         Order
             .find({ user: userId })
             .sort({ creationDate: -1 })
             .then((orders) => {
+
+                orders.forEach(o => {
+                    o.products.forEach(p => {
+                        data.push({
+                            title: p.title,
+                            price: p.price,
+                            quantity: p.quantity,
+                            date: o.creationDate
+                        })
+                    })
+                });
                 res.status(200).json({
                     message: '',
-                    data: orders
-                });
+                    data: data
+                    })
             });
     },
+
 };

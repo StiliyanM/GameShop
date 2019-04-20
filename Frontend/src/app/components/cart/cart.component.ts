@@ -17,6 +17,7 @@ export class CartComponent implements OnInit {
 
   constructor(private cartService: CartService, private router: Router) {
     this.items = this.cartService.all();
+
     if (this.items) {
       this.calcTotalPrice()
     }
@@ -36,7 +37,10 @@ export class CartComponent implements OnInit {
   }
 
   calcTotalPrice() {
-    this.total = this.items.length
+    this.total = this.items.reduce((acc, curr) => {
+      acc += curr.quantity * curr.price
+      return acc
+    }, 0)
 
   }
 
