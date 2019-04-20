@@ -10,6 +10,7 @@ import { FormComponent } from './form/form.component';
 import { EditComponent } from './edit/edit.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { SharedModule } from '../shared/shared.module';
+import { MyComponent } from './my/my.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     CoreModule,
   ],
-  declarations: [AllComponent, CreateComponent, DetailsComponent, FormComponent, EditComponent],
+  declarations: [AllComponent, CreateComponent, DetailsComponent, FormComponent, EditComponent, MyComponent],
 
 })
 export class GameModule { }

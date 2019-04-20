@@ -30,9 +30,6 @@ module.exports = {
     next();
   },
   isInRole: (role) => (req, res, next) => {
-    //decoded = jwt.verify(JSON.parse(req.headers.authorization.split(' ')[1]), configuration.decodedToken);
-    //let a = req.userId;
-    // temporary
       User.findById(req.userId)
         .then(user => {
           if (user.roles.indexOf(role) > -1) {

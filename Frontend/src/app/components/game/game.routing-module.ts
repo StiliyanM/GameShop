@@ -6,6 +6,7 @@ import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
 import { IsAdminGuard } from 'src/app/core/guards/is-admin.guard';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { MyComponent } from './my/my.component';
 
 const gameRoutes: Routes = [
     {
@@ -19,7 +20,6 @@ const gameRoutes: Routes = [
     },
     {
       path: 'details/:gameId',
-      canActivate: [AuthGuard],
       component: DetailsComponent
     },
     {
@@ -32,6 +32,11 @@ const gameRoutes: Routes = [
       canActivate: [IsAdminGuard],
       component: CreateComponent
     },
+    {
+      path: 'my',
+      canActivate: [AuthGuard],
+      component: MyComponent
+    }
   ];
 
   @NgModule({

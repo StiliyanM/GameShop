@@ -21,10 +21,10 @@ export class EditComponent implements OnInit {
   }
 
   save(game: Game) {
-      game.id = this.gameId
+      game._id = this.gameId
       this.gameService.edit(game)
       .subscribe(() => {
-        this.router.navigate([ '/car/details', game.id ]);
+        this.router.navigate([ '/car/details', game._id ]);
       })
 
   }

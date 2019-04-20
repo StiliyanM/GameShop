@@ -75,6 +75,9 @@ module.exports = {
             } catch (error) {
               if (!error.statusCode) {
                 error.statusCode = 500;
+                if (error.name === 'MongoError' && error.code === 11000) {
+                    return res.status(500).send({ success: false, message: 'User already exist!' });
+                  }            
               }
               next(error);
             }
@@ -101,6 +104,9 @@ module.exports = {
     
             const user = await User.findOne().where("email").equals(email);
     
+            if(!user) {
+                return res.status(500).send({ success: false, message: 'User doesn\'t exist! Register First!' });
+            }
             const token = jwt.sign({ userId: user._id.toString() }, configuration.decodedToken, { expiresIn: '9h' });
 
             res.status(200).json({ message: 'You are successfully logged in!', token, user });

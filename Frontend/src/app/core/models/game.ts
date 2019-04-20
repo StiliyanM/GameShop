@@ -1,5 +1,5 @@
 export class Game {
-    id: string;
+    _id: string;
     title: string;
     cover: string;
     publisher: string;

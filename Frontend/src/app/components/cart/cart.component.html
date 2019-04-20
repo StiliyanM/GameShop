@@ -28,10 +28,16 @@
         </tr>
       </tbody>
     </table>
-    <div class="d-flex align-items-center justify-content-end">
-      <div style="font-size:1.5rem">Total price: {{total  | currency}}</div>
-      <input class="ml-3 btn btn-success mr-3" type="submit" value="Checkout"
-        (click)="checkout()" />
-    </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <div>
+        <a routerLink="['/games/all']" class="btn btn-primary">Continue Shopping!</a>
+      </div>
+      <div>
+          <div style="font-size:1.5rem"  class="my-3">Total price: {{total  | currency}}</div>
+          <input class="ml-3 btn btn-success mr-3" [disabled]="isDisabled()" type="submit" value="Checkout"
+            (click)="checkout()" />
+        </div>    
+      </div>
   </form>
 </div>
+

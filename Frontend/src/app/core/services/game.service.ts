@@ -20,7 +20,7 @@ export class GameService {
 
 edit(game: Game): Observable<any> {
 
-  return this.http.put(`games/edit/${game.id}`, game)
+  return this.http.put(`games/edit/${game._id}`, game)
 }
 
 delete(id: string) {

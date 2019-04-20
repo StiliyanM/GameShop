@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {  Order } from 'src/app/core/models/order';
+import { Order } from 'src/app/core/models/order';
 import { CartService } from 'src/app/core/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -11,12 +12,21 @@ export class CartComponent implements OnInit {
 
   items: Order[]
   total: number
+
   options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  constructor(private cartService: CartService) { }
+
+  constructor(private cartService: CartService, private router: Router) {
+    this.items = this.cartService.all();
+    if (this.items) {
+      this.calcTotalPrice()
+    }
+  }
 
   ngOnInit() {
-    this.items = this.cartService.all();
-    this.calcTotalPrice()
+  }
+
+  isDisabled() {
+    return this.items.length === 0
   }
 
   changeSelected(id: string, option: number) {
@@ -26,21 +36,18 @@ export class CartComponent implements OnInit {
   }
 
   calcTotalPrice() {
-    this.total = this.items.reduce((acc, curr) => {
-      return acc + curr.price * curr.quantity
-  }, 0)
+    this.total = this.items.length
 
   }
 
   remove(id: string) {
     this.items = this.items.filter(i => i.gameId !== id)
-
     this.cartService.remove(id)
+    this.calcTotalPrice()
   }
 
   checkout() {
-    this.cartService.checkout(this.items);
-
-    this.items = [];
+    this.cartService.checkout(this.items)
+    this.router.navigate(['/games/all'])
   }
 }

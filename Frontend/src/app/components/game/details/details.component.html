@@ -10,14 +10,14 @@
     <p>Description: {{game.description}}</p>
     <h2>Price: {{game.price | currency}}</h2>
     <div *ngIf="isLogged">
-      <button class="btn btn-success float-right" (click)="buy(game._id)" [disabled]="isBought">Buy game</button>
+      <button class="btn btn-success float-right" [disabled]="isBought()" (click)="buy()">Buy game</button>
     </div>
     <div *ngIf="isAdmin">
         <a class="btn btn-warning" [routerLink]="['/games/edit', game._id]">Edit game</a>
         <a class="btn btn-danger ml-2" (click)="confirm()">Delete game</a>
       </div>
     </div>
-    <div *ngIf="!isLogged">
-      <button class="btn btn-primary float-right" (click)="login()">Login to Buy!</button>
+    <div *ngIf="!isLogged" class="buy">
+      <a class="btn btn-primary float-right" [routerLink]="['/signin']">Login to Buy!</a>
     </div>
   </div>

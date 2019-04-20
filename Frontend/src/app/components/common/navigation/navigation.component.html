@@ -19,7 +19,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" routerLink="/games/all">All Games</a>
           <a class="dropdown-item" routerLink="/games/bought">My Games</a>
-          <a class="dropdown-item" routerLink="/games/create">Create</a>
+          <a *ngIf="isAdmin" class="dropdown-item" routerLink="/games/create">Create</a>
         </div>
       </li>
     </ul>

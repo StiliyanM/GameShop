@@ -1,22 +1,23 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Order } from '../models/order';
 import { OrderService } from './order.service';
-import { ToastrService } from './common';
+import { of } from 'rxjs/internal/observable/of';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Injectable()
 export class CartService {
 
-  constructor(private orderService: OrderService, private toastrService: ToastrService) { }
+  constructor(private orderService: OrderService) { }
 
+  all(): Order[] {
+    const items = JSON.parse(localStorage.getItem('cart'))
 
-  all() {
-    return JSON.parse(localStorage.getItem('cart'))
+    return items ? items : []
   }
+
   add(order: Order) {
-    let items = this.all()
-    if (!items) {
-      items = []
-    }
+    const items = this.all()
+
     items.push(order)
     this.save(items);
   }
@@ -31,8 +32,7 @@ export class CartService {
   checkout(orders: Order[]) {
 
     this.orderService.add(orders)
-      .subscribe((result) => {
-        this.toastrService.success(result.message)
+      .subscribe(() => {
         localStorage.removeItem('cart')
       })
   }
@@ -41,4 +41,11 @@ export class CartService {
     localStorage.setItem('cart', JSON.stringify(orders))
   }
 
+  has(id) {
+    return this.all().some(o => o.gameId === id)
+  }
+
+  getCount() {
+    return this.all().length
+  }
 }

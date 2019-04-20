@@ -2,3 +2,7 @@
 body > app-root > div > div > app-cart > div > form > div > div{
     font-size: 1.4rem !important;
 }
+
+.container{
+    min-height: 300px
+}

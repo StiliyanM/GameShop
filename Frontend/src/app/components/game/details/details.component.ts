@@ -14,8 +14,9 @@ import { ConfirmationDialogService } from 'src/app/core/services/common/confirma
 export class DetailsComponent implements OnInit {
 
   game: Game
-  isLogged: boolean
-  isAdmin: boolean
+  isLogged = false
+  isAdmin = false
+  bought: boolean
 
   constructor(
     private gameService: GameService,
@@ -23,12 +24,13 @@ export class DetailsComponent implements OnInit {
     private cartService: CartService,
     private auth: AuthService,
     private router: Router,
-    private confirmDialog: ConfirmationDialogService) { }
+    private confirmDialog: ConfirmationDialogService) {
+    }
 
   ngOnInit() {
-
     this.isAdmin = this.auth.isAdmin
     this.isLogged = this.auth.isAuthenticated()
+
     const id = this.route.snapshot.paramMap.get('gameId');
     this.gameService.byId(id).subscribe(resp => {
 
@@ -38,7 +40,7 @@ export class DetailsComponent implements OnInit {
 
   buy() {
     const item = new Order()
-    item.gameId = this.game.id
+    item.gameId = this.game._id
     item.title = this.game.title
     item.price = this.game.price
     item.quantity = 1
@@ -52,9 +54,16 @@ export class DetailsComponent implements OnInit {
     this.confirmDialog.confirm('Delete Game', 'Are you sure ?')
       .then((confirmed) => {
         if (confirmed) {
-          this.gameService.delete(this.game.id)
+          this.gameService.delete(this.game['_id'])
+          .subscribe(() => {
+            this.router.navigate(['/games/all'])
+          })
         }
       })
+  }
+
+  isBought() {
+    return this.cartService.has(this.game._id)
   }
 
 
