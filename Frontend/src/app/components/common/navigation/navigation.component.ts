@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit, Input, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, ToastrService, CartService } from 'src/app/core/services';
-import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-navigation',
@@ -27,7 +26,6 @@ export class NavigationComponent implements OnInit, DoCheck {
     this.cartItems = this.cartService.getCount()
 
   }
-
 
   ngDoCheck() {
     this.cartItems = this.cartService.getCount()

@@ -3,14 +3,14 @@
 <section *ngIf="ready">
   <form [formGroup]="form" (submit)="submit()" class="w-100 d-flex flex-column">
     <div class="row">
-      <div class="form-group offset-3 col-3">
+      <div class="form-group col-md-3 offset-md-3 col-sm-6">
         <label for="title">Title</label>
         <input type="text" class="form-control" id="title" placeholder="Enter title" formControlName="title">
         <div class="alert alert-danger" *ngIf="fields?.title.touched && fields?.title?.errors?.required">
           <span>Title field is required!</span>
         </div>
       </div>
-      <div class="form-group col-3">
+      <div class="form-group col-md-3 col-sm-6">
         <label for="publisher">Publisher</label>
         <input type="text" class="form-control" id="publisher" placeholder="Enter publisher"
           formControlName="publisher">
@@ -20,14 +20,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="form-group offset-3 col-3">
+      <div class="form-group col-md-3 offset-md-3 col-sm-6">
         <label for="genre">Genre</label>
         <input type="text" class="form-control" id="genre" placeholder="Enter Genre" formControlName="genre">
         <div class="alert alert-danger" *ngIf="fields?.genre.touched && fields?.genre?.errors?.required">
           <span>Genre is required!</span>
         </div>
       </div>
-      <div class="form-group col-3">
+      <div class="form-group col-md-3  col-sm-6">
         <label for="year">Year</label>
         <input type="number" class="form-control" id="year" placeholder="Year" formControlName="year">
         <div class="alert alert-danger" *ngIf="fields.year.touched && fields.year?.errors?.required">
@@ -40,7 +40,7 @@
     </div>
 
     <div class="row">
-      <div class="form-group col-3 offset-3">
+      <div class="form-group col-md-3 offset-md-3 col-sm-6">
         <label for="cover">Cover</label>
         <input type="text" class="form-control" id="cover" placeholder="Enter cover" formControlName="cover">
         <div class="alert alert-danger" *ngIf="fields.cover.touched && fields.cover?.errors?.required">
@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <div class="form-group col-3">
+      <div class="form-group col-md-3 col-sm-6">
         <label for="price">Price</label>
         <input type="number" class="form-control" id="price" placeholder="Enter Price" formControlName="price">
         <div class="alert alert-danger" *ngIf="fields.price.touched && fields.price?.errors?.required">
@@ -59,7 +59,7 @@
         </div>
       </div>
     </div>
-    <div class="form-group offset-3 col-6">
+    <div class="form-group offset-md-3 col-md-6 col-sm-12">
       <label for="description">Description</label>
       <textarea class="form-control" rows="5" id="description" placeholder="Enter description"
         formControlName="description"></textarea>

@@ -1,9 +1,9 @@
-import { 
-  Directive, 
+import {
+  Directive,
   ElementRef,
   HostListener,
   Renderer2
- } from "@angular/core";
+ } from '@angular/core';
 
 @Directive({
   selector: '[appNavDropdown]'
